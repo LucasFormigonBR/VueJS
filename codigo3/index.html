@@ -10,12 +10,16 @@
 <body>
     <div id="app">
         <h1>{{ titulo }}</h1>
-        <div v-if="">
-            <p>{{ conteudo }}</p>
+        <div v-if="comprou">
+            <div v-show="comprou" v-bind:style="{background: cor}">        
+                <p>{{ conteudo }}</p>
+            </div>  
             <p>{{ lado * lado }}</p>
             <p>{{ comprou ? 'Sim, ele comprou' : 'Não comprou, compre aqui' }}</p>
-            <a v-bind:href="comprou ? href : '' ">{{ href }}</a>
+            <input v-model="cor" type="color">
+            {{ cor }}
     </div>
+    <a v-bind:href="comprou ? href : '' ">{{ href }}</a>
     </div>
 
     <script>
@@ -27,7 +31,8 @@
             conteudo: "Esse é o conteúdo",
             lado: 5,
             comprou: true,
-            href: "https://www.origamid.com"
+            href: "https://www.origamid.com",
+            cor: "#333"
            } 
         });
 
