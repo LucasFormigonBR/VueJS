@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Vue.JS - Ex</title>
+</head>
+<body>
+
+    <div id="app">
+       <ul>
+            <li><a @click.prevent="puxarAcao" href="https://api.iextrading.com/1.0/stock/aapl/quote">Apple</a></li>
+            <li><a @click.prevent="puxarAcao" href="https://api.iextrading.com/1.0/stock/googl/quote">Google</a></li>
+            <li><a @click.prevent="puxarAcao" href="https://api.iextrading.com/1.0/stock/amzn/quote">Amazon</a></li>
+            <li><a @click.prevent="puxarAcao" href="https://api.iextrading.com/1.0/stock/ebay/quote">Ebay</a></li>
+            <li><a @click.prevent="puxarAcao" href="https://api.iextrading.com/1.0/stock/pypl/quote">Paypal</a></li>
+       </ul>
+
+       <div>
+            <p>Empresa: {{ acao.companyName }} </p>
+            <p>Valor de Mercador: {{ acao.marketCap }} </p>
+            <p>Valor de Ação: {{ acao.latestPrice }} </p>
+       </div>
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+               acao: {}
+            },
+            methods: {
+                puxarAcao(event) {
+                    const url = event.currentTarget.href
+                    console.log(event.currentTarget.href);
+                    fetch(url).then(r => r.json()).then(r => {
+                        this.acao = r;
+                    });
+                }
+            }
+        });
+      
+    </script>
+
+
+</body>
+</html>
