@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button @click="incrementar">Incrementar</button>
+            <button @click="diminuir">Diminuir</button>
+            <button @click="mudarNome('Violão')">Violão</button>
+            <button @click="mudarNome('Guitarra')">Guitarra</button>
+            <button @click="verEvento">Ver Evento</button>
+
+            <p> {{ instrumento }} </p>
+            {{ total }}
+        </div>
+
+        <div id="app2">
+            <p>Latest Time: {{ acoes.base_experience }} </p>
+            <p>Latest Price: {{ acoes.abilities }} </p>
+            <p>Company Name: {{ acoes.companyName }} </p>
+
+            {{ acoes }}
+            <button @click="puxarAcoes">Puxar Ações</button>
+        </div>
+
+        <script>
+
+            const vm = new Vue({
+                el: "#app",
+                data: {
+                    total: 0,
+                    instrumento: "",
+                },
+                methods: {
+                    incrementar() {
+                        this.total++
+                        this.teste();
+                    },
+                    diminuir() {
+                        this.total--
+                        this.teste();
+                    },
+                    mudarNome(instrumento) {
+                        this.instrumento = instrumento;
+                    },
+                    verEvento(event) {
+                        console.log(event);
+                    },
+                    teste() {
+                        console.log("Método Ativado")
+                    }
+                },
+            });
+
+            const vm2 = new Vue({
+                el: "#app2",
+                data: {
+                    acoes: {}
+                },
+                methods: {
+
+                    puxarAcoes() {
+                        fetch("https://pokeapi.co/api/v2/pokemon/ditto").then(response => response.json()).then(json => {
+                            this.acoes = json;
+                            console.log(json)
+                        }); 
+                    }
+
+                }
+
+            });
+
+        </script>
+    
+    </body>
+</html>
