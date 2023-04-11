@@ -11,7 +11,22 @@
 
     <div id="app">
         <a v-bind:href="link">Link Google</a>
-        <p :class="cor"></p>
+        <p :class="cor">Texto</p>
+        <p :class="comprou ? 'verde' : 'vermelho' ">O cliente comprou?</p>
+    </div>
+
+    <div id="ex">
+        <div>
+            <p>{{ google.companyName }}</p>
+            <p :class="google.marketCap > google.marketCap ? 'verde' : 'vermelho' ">{{ google.marketCap }}</p>
+        </div>
+        <div>
+            <p>{{ apple.companyName }}</p>
+            <p :class="google.marketCap > apple.marketCap ? 'verde' : 'vermelho' ">{{ apple.marketCap }}</p>
+        </div>
+
+        <button @click="puxarDados">Puxar Dados</button>
+     
     </div>
 
 
@@ -20,10 +35,45 @@
             el: "#app",
             data: {
                 link: "https://www.google.com",
-                cor: "azul"
+                cor: "azul",
+                comprou: true
+            }
+        });
+
+        const vm2 = new Vue({
+            el: "#ex",
+            data: {
+               google: {},
+               apple: {},
+            },
+            methods: {
+                fetchGoogle() {
+                    fetch("https://api.iextrading.com/1.0/stock/googl/quote").then(r => r.json()).then(google => {
+                        this.google = google;
+                    });
+                },
+                fetchApple() {
+                    fetch("https://api.iextrading.com/1.0/stock/aapl/quote").then(r => r.json()).then(apple => {
+                        this.apple = apple;
+                    });
+                },
+                puxarDados() {
+                    this.fetchGoogle();
+                    this.fetchApple();
+                }
             }
         });
     </script>
+
+<style>
+    .verde{
+        color: green;
+    }
+
+    .vermelho{
+        color: red;
+    }
+</style>
 
 </body>
 </html>
