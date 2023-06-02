@@ -10,17 +10,34 @@
 <body>
 
     <div id="app">
-       <p v-if="logado === 1">Usuário Logado</p>
-       <p v-else-if="logado === 2">Usuário Logado 2</p>
-       <p v-else="false">Usuário Deslogado</p>
-    </div>
+        <p>Banana: {{ estoqueBanana }}</p>
+        <button v-show="estoqueBanana" @click="adicionarItem">+</button>
+        <button v-show="carrinho" @click="removerItem">-</button>
+        <p>Carrinho: {{ carrinho }}</p>
+        <p v-show="estoqueBanana === 0">Não temos mais Bananas em estoque.</p>
+    </div>    
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                logado: 2,
-            }
+                estoqueBanana: 7,
+                carrinho: 0
+            },
+            methods: {
+                adicionarItem() {
+                    if(this.estoqueBanana > 0) {
+                    this.carrinho++;
+                    this.estoqueBanana--;
+                    }       
+                },
+                removerItem() {
+                    if(this.carrinho > 0) {
+                    this.carrinho--;
+                    this.estoqueBanana++;
+                    }                
+                }
+            },          
         });
     </script>
 
