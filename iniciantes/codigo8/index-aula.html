@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Vue.JS</title>
+</head>
+
+<body>
+<!--
+    <div id="app">
+        <ul>
+            <li v-for="(valor, chave) in estados" :key="chave">
+            <p>{{valor.nome}}</p>
+            <p>{{valor.populacao}}</p>
+            </li>
+        </ul>
+        <div v-for="n in 10">
+            {{n}}
+        </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            /*
+            data: {  
+                frutas: ["Banana", "Uva", "Laranja"]         
+            },
+            */
+           data: {
+            estados: {
+                sp: {
+                    populacao: "45 milhoes",
+                    nome: "São Paulo"
+                },
+                mg: {
+                    populacao: "21 milhoes",
+                    nome: "Minas Gerais"
+                },
+                rj: {
+                    populacao: "17 milhoes",
+                    nome: "Rio de Janeiro"
+                },
+            }
+           }
+        });
+    </script>
+    -->
+
+    <div id="app">
+        <ul>
+            <li v-for="item in lista" :key="chave">
+            {{item}}
+            </li>
+        </ul>
+        <button @click="removerItem">Remover Item</button>
+        <button @click="adicionarItem">Adicionar Item</button>
+        <button @click="modificarItem">Modificar Item</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+
+            el: '#app',
+            /*
+            data: {  
+                frutas: ["Banana", "Uva", "Laranja"]         
+            },
+            */
+           data: {
+            lista: ["Item 1", "Item 2", "Item 3"]
+           },
+           methods: {
+            removerItem() {
+                this.lista.pop();
+            },
+            adicionarItem() {
+                this.lista.push("Item 5");
+            },
+            modificarItem() {
+                this.$set(this.lista, 0, "Banana");
+            }
+           },
+        });
+    </script>
+
+</body>
+
+</html>

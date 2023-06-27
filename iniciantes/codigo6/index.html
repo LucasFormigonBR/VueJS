@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,9 @@
     <script src="./vue.js"></script>
     <title>Vue.JS</title>
 </head>
+
 <body>
+    
 
     <div id="app">
         <p>Banana: {{ estoqueBanana }}</p>
@@ -15,7 +18,7 @@
         <button v-show="carrinho" @click="removerItem">-</button>
         <p>Carrinho: {{ carrinho }}</p>
         <p v-show="estoqueBanana === 0">Não temos mais Bananas em estoque.</p>
-    </div>    
+    </div>
 
     <script>
         const vm = new Vue({
@@ -26,20 +29,21 @@
             },
             methods: {
                 adicionarItem() {
-                    if(this.estoqueBanana > 0) {
-                    this.carrinho++;
-                    this.estoqueBanana--;
-                    }       
+                    if (this.estoqueBanana > 0) {
+                        this.carrinho++;
+                        this.estoqueBanana--;
+                    }
                 },
                 removerItem() {
-                    if(this.carrinho > 0) {
-                    this.carrinho--;
-                    this.estoqueBanana++;
-                    }                
+                    if (this.carrinho > 0) {
+                        this.carrinho--;
+                        this.estoqueBanana++;
+                    }
                 }
-            },          
+            },
         });
     </script>
 
 </body>
+
 </html>

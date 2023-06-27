@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>Vue.JS</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div v-html="link"></div>
+        <p>{{ fruta }}</p>
+        <p v-text="fruta"></p>
+
+        <p v-once>Valor Inicial: R${{ total - gasto }} </p>
+
+        <button @click="gasto += 5">Comprar Banana R$5,00</button>
+        <P>Total Gasto: R${{ gasto }} </P>
+        <p>Valor Total: R${{ total }}</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                link: "<a href='https//www.origamid.com'>Origamid</a> ",
+                fruta: "Banana",
+                total: 150.00,
+                gasto: 20.00
+            },
+        });
+    </script>
+
+</body>
+
+</html>

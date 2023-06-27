@@ -1,0 +1,25 @@
+<script src="./vue.js"></script>
+<title>Vue.js</title>
+</head>
+<body>
+    <div id="app">
+      <h1> {{ preco }} </h1>
+      <p>{{ total }}</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+              preco: 59,
+              desconto: 10
+            },
+            computed: {
+                total() {
+                    return "R$ " + (this.preco - this.desconto);
+                }
+            }
+        });        
+    </script>
+</body>
+</html>
